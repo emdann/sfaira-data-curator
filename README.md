@@ -31,7 +31,8 @@ curate_adata $H5AD_PATH $YAML_PATH
 
 This will save an anndata object with uniformed metadata annotations in `/path/to/h5ad/file.curated.h5ad`. You can specify an alternative saving directory using the parameter `--outdir`.
 
-## Example usage
+## Example usage
+
 ```
 H5AD_PATH=/nfs/team205/ed6/data/Stephenson_sfaira_curator_example.h5ad
 YAML_PATH=./Stephenson_sfaira_curator_example.yaml
