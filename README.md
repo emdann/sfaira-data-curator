@@ -31,6 +31,14 @@ curate_adata $H5AD_PATH $YAML_PATH
 
 This will save an anndata object with uniformed metadata annotations in `/path/to/h5ad/file.curated.h5ad`. You can specify an alternative saving directory using the parameter `--outdir`.
 
+## Example usage
+```
+H5AD_PATH=/nfs/team205/ed6/data/Stephenson_sfaira_curator_example.h5ad
+YAML_PATH=./Stephenson_sfaira_curator_example.yaml
+
+curate_adata $H5AD_PATH $YAML_PATH
+```
+
 ## Preparing the curation YAML
 
 For each dataset with similar metadata schema, we will collect information about standard metadata in a YAML file. This file uses the annotation format used for sfaira dataloaders (summarised below, see [docs](https://sfaira.readthedocs.io/en/latest/adding_datasets.html#field-descriptions) for detailed information on all the YAML fields).
