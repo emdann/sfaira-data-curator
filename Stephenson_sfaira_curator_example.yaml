@@ -1,21 +1,20 @@
 dataset_structure:
     dataset_index: 1
-    sample_fns:
+    sample_fns:  ## Sample filenames (use if multiple libraries to process with the same schema)
 dataset_wise:
-    author: "Dann, Emma"
+    author: "Stephenson, Emily"
     default_embedding: 
+    ## Fields if publicly available data
     doi_preprint: 
     doi_journal: 
     download_url_data: 
-    # doi_preprint: "no_doi_testing"
-    # doi_journal: "no_doi_testing"
-    # download_url_data: "https://submissions-lattice.s3.us-west-1.amazonaws.com/may2022_blood_kidney/AnnData/RNA/10_1038_s41591_021_01329_2.h5ad"
     download_url_meta: 
     primary_data: True
     year: 2021
 layers:
-    layer_counts: "raw"
-    layer_processed: "X"
+    layer_counts: "raw" ## Where are raw counts
+    layer_processed: "X" ## Where are log-normalized counts
+    ## Fields for RNA velocity quantifications
     layer_spliced_counts: 
     layer_spliced_processed: 
     layer_unspliced_counts: 
@@ -27,10 +26,10 @@ dataset_or_feature_wise:
     feature_type: "rna"
     feature_type_var_key: 
 dataset_or_observation_wise:
-    assay_sc: "10x 3' v3"
+    assay_sc: "10x 3' v3" ## Uses EFO:0010183 labels [e.g. 10x 3' v2, 10x 5' v2, Smart-seq2]
     assay_sc_obs_key: 
-    bio_sample: "sample_id"
-    bio_sample_obs_key: 
+    bio_sample: 
+    bio_sample_obs_key: "sample_id"
     cell_type: 
     cell_type_obs_key: "cell_type"
     ## Specific to cell cultures

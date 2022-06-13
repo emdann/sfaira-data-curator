@@ -1,11 +1,21 @@
 import scanpy as sc
 import sfaira
 
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("h5ad_path", help="path to h5ad object containing dataset")
+parser.add_argument(
+    "yaml_path", help="path to yaml object containing metadata")
+parser.add_argument("--outdir",
+                    default=None,
+                    help="folder to save curated h5ad (uses same as input by default)")
+args = parser.parse_args()
+
 
 def curate_adata(h5ad_path: str,
                  yaml_path: str,
                  outdir: str = None,
-                 custom_fields=['sorting_protocol'],
+                 custom_fields: List[str] = ['sorting_protocol'],
                  save: bool = True
                  ):
     '''
@@ -15,7 +25,9 @@ def curate_adata(h5ad_path: str,
     ------
     - h5ad_path: path to h5ad object
     - yaml_path: path to .yaml file for curation
-    - outdir: path to output directory to store curated anndata (default: same directory as input) 
+    - outdir: path to output directory to store curated anndata (default: same directory as input, only used if save=True) 
+    - custom_fields: List of custom YAML fields to add (extra from fields in `sfaira.consts.AdataIdsSfaira`)
+    - save: boolean indicating whether the curated anndata should be saved in h5ad format or if the function should return the anndata object
 
     Returns:
     -------
@@ -87,3 +99,7 @@ def curate_adata(h5ad_path: str,
         adata_sfaira.write_h5ad(out_h5ad_path)
     else:
         return(adata_sfaira)
+
+
+def main():
+    curate_adata(args.h5ad_file, args.yaml_file, outdir=args.outdir)
