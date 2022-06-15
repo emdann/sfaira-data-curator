@@ -1,15 +1,7 @@
 import scanpy as sc
 import sfaira
-
+from typing import List
 import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument("h5ad_path", help="path to h5ad object containing dataset")
-parser.add_argument(
-    "yaml_path", help="path to yaml object containing metadata")
-parser.add_argument("--outdir",
-                    default=None,
-                    help="folder to save curated h5ad (uses same as input by default)")
-args = parser.parse_args()
 
 
 def curate_adata(h5ad_path: str,
@@ -95,11 +87,20 @@ def curate_adata(h5ad_path: str,
         else:
             out_h5ad_path = outdir + \
                 h5ad_path.split(".h5ad")[0].split('/')[-1] + '.curated.h5ad'
-        print(f"Saving curated data to {yaml_path}...")
+        print(f"Saving curated data to {out_h5ad_path}...")
         adata_sfaira.write_h5ad(out_h5ad_path)
     else:
         return(adata_sfaira)
 
 
 def main():
-    curate_adata(args.h5ad_file, args.yaml_file, outdir=args.outdir)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "h5ad_path", help="path to h5ad object containing dataset")
+    parser.add_argument(
+        "yaml_path", help="path to yaml object containing metadata")
+    parser.add_argument("--outdir",
+                        default=None,
+                        help="folder to save curated h5ad (uses same as input by default)")
+    args = parser.parse_args()
+    curate_adata(args.h5ad_path, args.yaml_path, outdir=args.outdir)
