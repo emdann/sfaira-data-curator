@@ -59,7 +59,7 @@ def curate_adata(h5ad_path: str,
                 raise ValueError(
                     f"An error occured when setting {k} as {v}: {e}")
 
-    d.streamline_metadata(keep_orginal_obs=True, clean_obs=False)
+    d.streamline_metadata(keep_orginal_obs=True, clean_obs=False, clean_obs_names=False)
 
     # Add extra fields to uns
     for k in custom_fields:
